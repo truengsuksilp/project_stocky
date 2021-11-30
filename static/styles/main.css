@@ -1,4 +1,76 @@
+/* === References === */
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Source+Sans+Pro&display=swap");
+/*
+    $black: #030408;
+    $blue: #20275c;
+    $grey: #3f4445;
+    $green: #308f3e;
+    $purple: #332aa0;
+    $red: #9a3450;
+    $white: #e1e2e3;
+    $orange: #faa72e;
+*/
+* {
+  box-sizing: border-box;
+  font-family: "Source Sans Pro"; }
+
+body {
+  background-color: #030408;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas: "nav" "articles";
+  justify-content: center; }
+
+nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100vw - 3rem); }
+  nav section {
+    display: flex;
+    align-content: center; }
+  nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  nav i {
+    color: #e1e2e3;
+    font-size: 2.0rem;
+    padding: 16px 0px 16px 0px; }
+  nav .nav-auth {
+    color: #e1e2e3;
+    padding: 1rem;
+    font-weight: 500;
+    border-radius: 10%; }
+  nav #nav-signup {
+    color: #030408;
+    background-color: #e1e2e3; }
+
+article {
+  grid-area: articles;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  article section {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-bottom: 2rem;
+    border: 2px solid #e1e2e3; }
+
 h1 {
-  color: purple; }
+  font-size: 3.5rem; }
+
+h1, h2, h3, h4, h5, label, a {
+  color: #e1e2e3; }
+
+h6, p {
+  color: #969696; }
+
+@media only screen and (min-width: 720px) {
+  article section {
+    padding: 0.5rem;
+    max-width: 70%; } }
 
 /*# sourceMappingURL=main.css.map */
