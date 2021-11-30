@@ -4,7 +4,4 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-# Extends user model
-class Profile(Model):
-    user = OneToOneField(User, on_delete=CASCADE)
-    stocks = CharField(max_length=10000)
+# Extends user model as needed (e.g., location, bio)

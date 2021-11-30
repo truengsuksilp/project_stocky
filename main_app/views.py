@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Auth
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginForm
 
 # Create your views here.
 class Home(TemplateView):
@@ -16,7 +16,7 @@ class SignUp(View):
     def get(self, request):
         form = SignUpForm()
         context = {'form': form}
-        return render(request, 'signup_crispy.html', context)
+        return render(request, 'registration/signup.html', context)
 
     def post(self, request):
         form = SignUpForm(request.POST)
@@ -27,4 +27,4 @@ class SignUp(View):
             return redirect('home')
         else: 
             context = {'form': form}
-            return render(request,'signup.html', context)
+            return render(request,'registration/signup.html', context)
