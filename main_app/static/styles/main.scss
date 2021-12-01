@@ -20,7 +20,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Source Sans Pro'
+    font-family: 'Source Sans Pro';
     // border: 1px solid goldenrod;
 }
 
@@ -43,24 +43,41 @@ article {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        
-        input, button {
-            margin: 0.5rem;
-            padding: 0.5rem;
-        }
     }
 
-    .stock-list {
+    input, button {
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    // Profiles Page
+
+    img {
+        object-fit: cover;
+        width: 300px;
+        height: 300px;
+        
+        border-radius: 50%;
+        // overflow: hidden;
+    }
+
+    div {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
+        max-width: 200px;
+        margin-bottom: 0.5rem;
     }
 }
 
 @media only screen and (min-width: 720px) {    
     article {
-        section {
+        .stock-inputs {
             padding: 0.5rem;
             width: 720px;
+        }
+        .stock-list {
+            padding: 0.5rem;
+            min-width: 300px;
         }
     }
 }

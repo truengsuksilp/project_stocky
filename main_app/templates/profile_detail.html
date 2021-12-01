@@ -10,19 +10,21 @@
     </section>
 
     <!-- Portfolio: Current stocks | Add Stocks | Run Button -->
-    <section>
-        {% for portfolio in user.portfolios.all %}        
-            <h5>{{portfolio.name}}</h5>
+    {% for portfolio in user.portfolios.all %}  
+        <section class="stock-list">  
+            <h3>{{portfolio.name}}</h3>
             {% for stock in portfolio.stocks.all %}
-                <div>
-                    <i class="fas fa-exchange"></i>
-                    <span>{{stock.ticker}}</span>
+                <div class="stock">
+                    <span>
+                        <i class="fas fa-exchange"></i>
+                        &nbsp
+                        {{stock.ticker}}
+                    </span>
                     <span>{{stock.price}}</span>
                 </div>
             {% endfor %}
-        {% endfor %}
-    </section>
-
+        </section>
+    {% endfor %}
 </article>    
 
     

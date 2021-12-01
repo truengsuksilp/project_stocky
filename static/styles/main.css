@@ -11,7 +11,7 @@ body {
 h1 {
   font-size: 3.5rem; }
 
-h1, h2, h3, h4, h5, label, a {
+h1, h2, h3, h4, h5, label, a, span, i {
   color: #e1e2e3; }
 
 h6, p {
@@ -54,7 +54,7 @@ nav {
 */
 * {
   box-sizing: border-box;
-  font-family: "Source Sans Pro"; }
+  font-family: 'Source Sans Pro'; }
 
 article {
   grid-area: articles;
@@ -71,16 +71,26 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: space-around; }
-    article .stock-inputs input, article .stock-inputs button {
-      margin: 0.5rem;
-      padding: 0.5rem; }
-  article .stock-list {
+  article input, article button {
+    margin: 0.5rem;
+    padding: 0.5rem; }
+  article img {
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; }
+  article div {
     display: flex;
-    flex-direction: column; }
+    justify-content: space-between;
+    max-width: 200px;
+    margin-bottom: 0.5rem; }
 
 @media only screen and (min-width: 720px) {
-  article section {
+  article .stock-inputs {
     padding: 0.5rem;
-    width: 720px; } }
+    width: 720px; }
+  article .stock-list {
+    padding: 0.5rem;
+    min-width: 300px; } }
 
 /*# sourceMappingURL=main.css.map */
