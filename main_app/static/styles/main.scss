@@ -43,7 +43,6 @@ nav {
     justify-content: space-between;
     width: calc(100vw - 3rem);
 
-
     section {
         display: flex;
         align-content: center;
@@ -77,6 +76,7 @@ nav {
 
 article {
     grid-area: articles;
+    margin-top: 2rem;
     
     display: flex;
     flex-direction: column;
@@ -88,9 +88,19 @@ article {
         align-content: center;
         margin-bottom: 2rem;
     
-        border: 2px solid $white;
+        // border: 2px solid $white;
     }
 
+    .stock-inputs {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        
+        input, button {
+            margin: 0.5rem;
+            padding: 0.5rem;
+        }
+    }
 }
 
 h1 {
@@ -109,7 +119,7 @@ h6, p {
     article {
         section {
             padding: 0.5rem;
-            max-width: 70%;
+            width: 720px;
         }
     }
 }

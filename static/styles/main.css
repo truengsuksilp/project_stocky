@@ -49,6 +49,7 @@ nav {
 
 article {
   grid-area: articles;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -56,8 +57,14 @@ article {
     display: flex;
     flex-direction: column;
     align-content: center;
-    margin-bottom: 2rem;
-    border: 2px solid #e1e2e3; }
+    margin-bottom: 2rem; }
+  article .stock-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
+    article .stock-inputs input, article .stock-inputs button {
+      margin: 0.5rem;
+      padding: 0.5rem; }
 
 h1 {
   font-size: 3.5rem; }
@@ -71,6 +78,6 @@ h6, p {
 @media only screen and (min-width: 720px) {
   article section {
     padding: 0.5rem;
-    max-width: 70%; } }
+    width: 720px; } }
 
 /*# sourceMappingURL=main.css.map */

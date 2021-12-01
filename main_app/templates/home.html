@@ -2,6 +2,7 @@
     https://dribbble.com/shots/16070493-ProFinance-Finance-Management-App-Concept-Animation -->
 
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <article>
@@ -19,12 +20,34 @@
     <section>
         <h3>What is Stocky?</h3>
 
-        <h6>How it works?</h6>
+        <h5>How it works?</h5>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia aliquam quo iure minus libero a impedit exercitationem expedita nisi ipsa esse explicabo perferendis illo, deserunt ut autem? Eligendi, numquam vel!</p>
 
-        <h6>Under the Hood</h6>
+        <h5>Under the Hood</h5>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, itaque maiores impedit in enim soluta laudantium accusantium, reprehenderit magnam cupiditate eius sit. Incidunt soluta dicta, dolor quas aperiam hic accusamus!</p>
     </section>
+
+    <!-- Enter Stock Inputs -->
+    <section>
+        <h3>Enter Tickers and Portfolio Valuation</h3>
+        
+        <form action: "" method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+
+            <div class='stock-inputs'>
+                <input type="text" name="tickers" placeholder="AAPL, MSFT, GOOGL">
+                <input 
+                    type="number" 
+                    name="valuation" 
+                    placeholder="Total Valuation ($, Optional)"
+                >
+                <button type="submit" class="btn btn-success">Run</button>
+            </div>
+
+        </form>
+    </section>
+
 </article>
 
 {% endblock %}
