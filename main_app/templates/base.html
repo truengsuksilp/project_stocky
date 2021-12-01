@@ -43,7 +43,7 @@
             <!-- TODO: <a> UPDATE link to profile -->
             <!-- TODO: Bootstrap nav: So dropdown is easy -->
             {% if user.is_authenticated %}
-                <a href="/" class='nav-auth'> 
+                <a href="{% url 'profile_detail' user.pk %}" class='nav-auth'> 
                     Welcome: {{user.username | slice:":15"}}
                 </a>
                 <a href="/accounts/logout" class='nav-auth'>

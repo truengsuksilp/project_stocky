@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<!-- TODO: Create Portfolio Button -->
+<!-- TODO: Delete Stock Button -->
 
 <article class="profile">
     <!-- Avatar -->
@@ -11,8 +13,14 @@
 
     <!-- Portfolio: Current stocks | Add Stocks | Run Button -->
     {% for portfolio in user.portfolios.all %}  
-        <section class="stock-list">  
-            <h3>{{portfolio.name}}</h3>
+        <section class="portfolio-list">
+            <div class="portfolio-header">
+                <h3>{{portfolio.name}}</h3>
+                <a href="{% url 'portfolio_update' portfolio.pk %}">
+                    <Button type="submit" class="btn btn-warning">Edit</button>
+                </a>
+            </div>
+
             {% for stock in portfolio.stocks.all %}
                 <div class="stock">
                     <span>
@@ -20,13 +28,37 @@
                         &nbsp
                         {{stock.ticker}}
                     </span>
-                    <span>{{stock.price}}</span>
+                    <span>
+                        {{stock.price}}
+                        {% comment %} &nbsp
+                        <a href="{% url 'stock_delete' portfolio.pk stock.pk %}">
+                            <i class="fa fa-trash"></i>
+                        </a> {% endcomment %}
+                    </span>
+                    <span>
+                        <!-- Delete Stock: Refactored <a> to <form> -->
+                        <form action="{% url 'stock_delete' portfolio.pk stock.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type=submit class="btn btn-danger button-delete-stock">Delete</button>
+                        </form>
+                    </span>
                 </div>
             {% endfor %}
+
+            <a href="{% url 'stock_create' portfolio.pk %}">
+                <Button class="btn btn-secondary stock-add-button">Add Stock</button>
+            </a>
+
+            <a href="{% url 'portfolio_delete' portfolio.pk %}">
+                <Button class="btn btn-danger stock-add-button">Delete</button>
+            </a>
+
+            <a href="{% url 'portfolio_analyze' portfolio.pk %}">
+                <Button class="btn btn-primary stock-add-button">Run Analysis</button>
+            </a>
         </section>
     {% endfor %}
 </article>    
 
     
-
 {% endblock %}

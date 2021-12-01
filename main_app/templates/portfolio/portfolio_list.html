@@ -11,14 +11,6 @@
         <a href="{% url 'portfolio_detail' portfolio.pk %}">
             <p>{{portfolio.name}}</p>
         </a>
-        
-        <!-- Show all stocks -->
-        <!--
-        {% for stock in portfolio.stocks.all %}
-            <p>{{stock.ticker}}</p>
-        {% endfor %}
-        -->
-
     {% endfor %}
 
 </article>    

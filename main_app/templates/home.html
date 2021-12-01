@@ -7,7 +7,7 @@
 {% block content %}
 <article class="home">
     <!-- Hero Section -->
-    <section>
+    <section class="home">
         <h1>
             Boost Your Investing Luck
         </h1>
@@ -17,7 +17,7 @@
     </section>
 
     <!-- About Section -->
-    <section>
+    <section class="home">
         <h3>What is Stocky?</h3>
 
         <h5>How it works?</h5>
@@ -28,14 +28,16 @@
     </section>
 
     <!-- Enter Stock Inputs -->
-    <section>
-        <h3>Enter Tickers and Portfolio Valuation</h3>
+    <section class="home">
+        <h3>
+            Enter Tickers and Portfolio Valuation
+        </h3>
         
-        <form action: "" method="post">
+        <form method="post">
             {% csrf_token %}
             {{form|crispy}}
 
-            <div class='stock-inputs'>
+            <div class='stock stock-inputs'>
                 <input type="text" name="tickers" placeholder="AAPL, MSFT, GOOGL">
                 <input 
                     type="number" 

@@ -55,41 +55,35 @@ class ProfileDetail(DetailView):
     model = User
     template_name = "profile_detail.html"
 
-# Too hard: Change to add & delete buttons
-# class ProfileUpdate(View):
-#     template_name = "profile_update.html"
-
-### PORTFOLIO VIEWS ###
-class PortfolioList(TemplateView):
-    template_name = "portfolio_list.html"
-    
-    # Adds portfolios to context
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["portfolios"] = Portfolio.objects.all()
-        return context
+### PORTFOLIO CRUD ###
+class PortfolioCreate(CreateView):
+    model = Portfolio
+    fields = "__all__"
+    template_name = "portfolio/portfolio_create.html"
+    def get_success_url(self): 
+      return reverse("portfolio_detail", kwargs={"pk": self.object.pk})
 
 class PortfolioDetail(DetailView):
     # Adds context["portfolio"] = Portfolio.objects.get(pk=pk)
     # pk comes from url
     model = Portfolio
-    template_name = "portfolio_detail.html"
-
-class PortfolioCreate(CreateView):
-    model = Portfolio
-    fields = "__all__"
-    template_name = "portfolio_create.html"
-    def get_success_url(self): 
-      return reverse("portfolio_detail", kwargs={"pk": self.object.pk})
+    template_name = "portfolio/portfolio_detail.html"
 
 class PortfolioUpdate(UpdateView):
     model = Portfolio
     fields = "__all__"
-    template_name = "portfolio_update.html"
+    template_name = "portfolio/portfolio_update.html"
 
-    # FIXME: Fails to redirect
     def get_success_url(self): 
       return reverse("portfolio_detail", kwargs={"pk": self.object.pk})
+
+class PortfolioDelete(DeleteView):
+    model = Portfolio
+    template_name = "portfolio/portfolio_delete.html"
+
+    # success_url = '/profiles/1/'
+    def get_success_url(self): 
+      return reverse("profile_detail", kwargs={"pk": self.object.user.id})
 
 ### STOCK Views
 class StockCreate(CreateView):
@@ -100,7 +94,43 @@ class StockCreate(CreateView):
     def get_success_url(self):
         return reverse("portfolio_detail", kwargs={"pk": self.object.portfolio.id})
 
+class StockDelete(View):     
+    def post(self, request, pk, stock_pk):
+        Stock.objects.filter(pk=stock_pk).delete()
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+        # return redirect("profile_detail", pk=pk)
+
+### PORTFOLIO ANALYZE ###
+# TODO Change this to View with custom function
+class PortfolioAnalyze(DetailView):
+    model = Portfolio
+    template_name = "portfolio_analyze.html"
+
+
+
+
+
 
 # NOTE
 ### CreateView: needs to define fields
 ### https://stackoverflow.com/questions/46701426/using-modelformmixin-without-the-fields-attribute-is-prohibited
+
+### Delete: filter then delete
+### Redirect to previous page: request.META.get('HTTP_REFERER', '/')
+
+# Obsoleted
+# class PortfolioList(TemplateView):
+#     template_name = "portfolio/portfolio_list.html"
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["portfolios"] = Portfolio.objects.all()
+#         return context
+
+
+# Failed : Page not found - No stock found matching the query
+# class StockDelete(DeleteView):     
+#     model = Stock
+#     template_name = "stock_delete.html"
+
+#     def get_success_url(self): 
+#       return reverse("profile_detail", kwargs={"pk": self.object.portfolio.user.id})

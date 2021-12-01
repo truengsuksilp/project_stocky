@@ -42,16 +42,6 @@ nav {
     color: #030408;
     background-color: #e1e2e3; }
 
-/*
-    $black: #030408;
-    $blue: #20275c;
-    $grey: #3f4445;
-    $green: #308f3e;
-    $purple: #332aa0;
-    $red: #9a3450;
-    $white: #e1e2e3;
-    $orange: #faa72e;
-*/
 * {
   box-sizing: border-box;
   font-family: 'Source Sans Pro'; }
@@ -71,26 +61,46 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: space-around; }
-  article input, article button {
-    margin: 0.5rem;
-    padding: 0.5rem; }
   article img {
     object-fit: cover;
     width: 300px;
     height: 300px;
     border-radius: 50%; }
-  article div {
+  article div.portfolio-header {
+    display: flex;
+    justify-content: space-between; }
+    article div.portfolio-header h3 {
+      line-height: 1.8; }
+  article div.stock {
     display: flex;
     justify-content: space-between;
-    max-width: 200px;
+    align-items: center;
     margin-bottom: 0.5rem; }
+  article h3 {
+    line-height: 1;
+    margin-bottom: 0px; }
+  article button {
+    margin: 0.5rem 0rem; }
 
 @media only screen and (min-width: 720px) {
-  article .stock-inputs {
+  article h3 {
+    margin-bottom: 1rem; }
+  article .home {
     padding: 0.5rem;
     width: 720px; }
-  article .stock-list {
-    padding: 0.5rem;
-    min-width: 300px; } }
+    article .home input {
+      padding: 0.5rem; }
+  article .stock-inputs input, article .stock-inputs button {
+    margin: 0.5rem;
+    width: 100%; }
+  article .portfolio-list {
+    padding: 0.5rem 0.5rem 0.5rem 0rem;
+    min-width: 250px; }
+    article .portfolio-list .button-delete-stock {
+      margin: 0rem;
+      padding: 0.1rem 0.1rem; }
+  article .stock-add-button {
+    padding: 0.1rem 0rem;
+    min-width: 250px; } }
 
 /*# sourceMappingURL=main.css.map */

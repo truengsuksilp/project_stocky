@@ -3,22 +3,15 @@
 
 {% block content %}
 
-
-<article class="profile">
-    <!-- Portfolio: Get all stocks in a portfolio -->
+<article>
     <section>   
-        
         <form method="POST">
             {% csrf_token %}
             {{form|crispy}}
 
-            <button type="submit">Create</button>
+            <button type="submit" class="btn btn-success">Update</button>
         </form>
-        
     </section>
-
 </article>    
-
-    
 
 {% endblock %}

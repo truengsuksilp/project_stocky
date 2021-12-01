@@ -2,17 +2,14 @@
 
 {% block content %}
 
-
+<!-- Get all stocks in a portfolio -->
 <article class="profile">
-    <!-- Portfolio: Get all stocks in a portfolio -->
-    <section>   
+    <section class="portfolio-list">   
         <h3> {{portfolio.name}} </h3>  
         {% for stock in portfolio.stocks.all %}        
             <p> {{stock.ticker}} </p>
         {% endfor %}
-        
     </section>
-
 </article>    
 
     
