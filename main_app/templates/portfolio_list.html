@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<article class="profile">
+
+    <h1>List of Portfolios</h1>
+    <!-- Portfolio: Current stocks | Add Stocks | Run Button --> 
+    {% for portfolio in portfolios %}        
+        <a href="{% url 'portfolio_detail' portfolio.pk %}">
+            <p>{{portfolio.name}}</p>
+        </a>
+        
+        <!-- Show all stocks -->
+        <!--
+        {% for stock in portfolio.stocks.all %}
+            <p>{{stock.ticker}}</p>
+        {% endfor %}
+        -->
+
+    {% endfor %}
+
+</article>    
+
+    
+
+{% endblock %}

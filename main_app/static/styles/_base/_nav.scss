@@ -1,1 +1,37 @@
-// TODO: Move nav here
+nav {
+    grid-area: nav;
+    
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 3rem);
+
+    section {
+        display: flex;
+        align-content: center;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    i {
+        color: $white;
+        font-size: 2.0rem;
+        padding: 16px 0px 16px 0px;
+    }
+
+    .nav-auth {
+        color: $white;
+        padding: 1rem;
+        font-weight: 500;
+        border-radius: 10%;
+    }
+
+    #nav-signup {
+        color: $black;
+        background-color: $white;
+    }
+    
+}

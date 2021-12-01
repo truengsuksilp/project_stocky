@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<article class="profile">
+    <!-- Portfolio: Get all stocks in a portfolio -->
+    <section>   
+        <h3> {{portfolio.name}} </h3>  
+        {% for stock in portfolio.stocks.all %}        
+            <p> {{stock.ticker}} </p>
+        {% endfor %}
+        
+    </section>
+
+</article>    
+
+    
+
+{% endblock %}

@@ -1,19 +1,5 @@
 /* === References === */
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Source+Sans+Pro&display=swap");
-/*
-    $black: #030408;
-    $blue: #20275c;
-    $grey: #3f4445;
-    $green: #308f3e;
-    $purple: #332aa0;
-    $red: #9a3450;
-    $white: #e1e2e3;
-    $orange: #faa72e;
-*/
-* {
-  box-sizing: border-box;
-  font-family: "Source Sans Pro"; }
-
 body {
   background-color: #030408;
   padding: 1rem;
@@ -21,6 +7,15 @@ body {
   grid-template-rows: 50px 1fr;
   grid-template-areas: "nav" "articles";
   justify-content: center; }
+
+h1 {
+  font-size: 3.5rem; }
+
+h1, h2, h3, h4, h5, label, a {
+  color: #e1e2e3; }
+
+h6, p {
+  color: #969696; }
 
 nav {
   grid-area: nav;
@@ -47,6 +42,20 @@ nav {
     color: #030408;
     background-color: #e1e2e3; }
 
+/*
+    $black: #030408;
+    $blue: #20275c;
+    $grey: #3f4445;
+    $green: #308f3e;
+    $purple: #332aa0;
+    $red: #9a3450;
+    $white: #e1e2e3;
+    $orange: #faa72e;
+*/
+* {
+  box-sizing: border-box;
+  font-family: "Source Sans Pro"; }
+
 article {
   grid-area: articles;
   margin-top: 2rem;
@@ -65,15 +74,9 @@ article {
     article .stock-inputs input, article .stock-inputs button {
       margin: 0.5rem;
       padding: 0.5rem; }
-
-h1 {
-  font-size: 3.5rem; }
-
-h1, h2, h3, h4, h5, label, a {
-  color: #e1e2e3; }
-
-h6, p {
-  color: #969696; }
+  article .stock-list {
+    display: flex;
+    flex-direction: column; }
 
 @media only screen and (min-width: 720px) {
   article section {

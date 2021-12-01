@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<article class="profile">
+    <!-- Avatar -->
+    <section>
+        <img src="https://cbsnews1.cbsistatic.com/hub/i/2016/12/14/4b7e3037-b62b-4f21-9e5c-1c181da45a6a/screen-shot-2016-12-14-at-4-25-12-pm.png" alt="avatar">
+    </section>
+
+    <!-- Portfolio: Current stocks | Add Stocks | Run Button -->
+    <section>
+        {% for portfolio in user.portfolios.all %}        
+            <h5>{{portfolio.name}}</h5>
+            {% for stock in portfolio.stocks.all %}
+                <div>
+                    <i class="fas fa-exchange"></i>
+                    <span>{{stock.ticker}}</span>
+                    <span>{{stock.price}}</span>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        
+    </section>
+
+</article>    
+
+    
+
+{% endblock %}

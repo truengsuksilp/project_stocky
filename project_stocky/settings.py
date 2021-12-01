@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'main_app',
     'sass_processor',
     'crispy_forms',
+    'django_extensions',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

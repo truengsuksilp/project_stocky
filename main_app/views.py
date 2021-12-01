@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Models
-from main_app.models import Portfolio, Stock
+from main_app.models import User, Portfolio, Stock
 
 # Auth
 from django.contrib.auth import login, authenticate
@@ -31,8 +32,6 @@ class Home(TemplateView):
         for i in stock_array:
             Stock.object.create(stock_array[i])
 
-        
-
 class SignUp(View):
     def get(self, request):
         form = SignUpForm()
@@ -49,3 +48,59 @@ class SignUp(View):
         else: 
             context = {'form': form}
             return render(request,'registration/signup.html', context)
+
+### PROFILE VIEWS ###
+class ProfileDetail(DetailView):
+    # Adds context["user"]
+    model = User
+    template_name = "profile_detail.html"
+
+# Too hard: Change to add & delete buttons
+# class ProfileUpdate(View):
+#     template_name = "profile_update.html"
+
+### PORTFOLIO VIEWS ###
+class PortfolioList(TemplateView):
+    template_name = "portfolio_list.html"
+    
+    # Adds portfolios to context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["portfolios"] = Portfolio.objects.all()
+        return context
+
+class PortfolioDetail(DetailView):
+    # Adds context["portfolio"] = Portfolio.objects.get(pk=pk)
+    # pk comes from url
+    model = Portfolio
+    template_name = "portfolio_detail.html"
+
+class PortfolioCreate(CreateView):
+    model = Portfolio
+    fields = "__all__"
+    template_name = "portfolio_create.html"
+    def get_success_url(self): 
+      return reverse("portfolio_detail", kwargs={"pk": self.object.pk})
+
+class PortfolioUpdate(UpdateView):
+    model = Portfolio
+    fields = "__all__"
+    template_name = "portfolio_update.html"
+
+    # FIXME: Fails to redirect
+    def get_success_url(self): 
+      return reverse("portfolio_detail", kwargs={"pk": self.object.pk})
+
+### STOCK Views
+class StockCreate(CreateView):
+    model = Stock
+    fields = '__all__'
+    template_name = "stock_create.html"
+    
+    def get_success_url(self):
+        return reverse("portfolio_detail", kwargs={"pk": self.object.portfolio.id})
+
+
+# NOTE
+### CreateView: needs to define fields
+### https://stackoverflow.com/questions/46701426/using-modelformmixin-without-the-fields-attribute-is-prohibited
