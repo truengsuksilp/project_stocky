@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 
@@ -14,34 +15,36 @@
     <!-- Portfolio: Current stocks | Add Stocks | Run Button -->
     {% for portfolio in user.portfolios.all %}  
         <section class="portfolio-list">
+
+            <!-- Porfolio Header -->
             <div class="portfolio-header">
-                <h3>{{portfolio.name}}</h3>
+                <div>
+                    <h3>{{portfolio.name}}</h3>
+                    <h6>$ {{portfolio.valuation | intcomma }}</h6>
+                </div>
                 <a href="{% url 'portfolio_update' portfolio.pk %}">
                     <Button type="submit" class="btn btn-warning">Edit</button>
                 </a>
             </div>
 
+            <!-- Porfolio List -->
             {% for stock in portfolio.stocks.all %}
                 <div class="stock">
                     <span>
-                        <i class="fas fa-exchange"></i>
-                        &nbsp
                         {{stock.ticker}}
                     </span>
-                    <span>
-                        {{stock.price}}
-                        {% comment %} &nbsp
-                        <a href="{% url 'stock_delete' portfolio.pk stock.pk %}">
-                            <i class="fa fa-trash"></i>
-                        </a> {% endcomment %}
-                    </span>
-                    <span>
-                        <!-- Delete Stock: Refactored <a> to <form> -->
-                        <form action="{% url 'stock_delete' portfolio.pk stock.pk %}" method="POST">
+                    <div style="display:flex; align-items: center">
+                        <span>$ {{stock.price | intcomma}}</span>
+                        &nbsp
+                        <span>
+                            <form action="{% url 'stock_delete' portfolio.pk stock.pk %}" method="POST">
                             {% csrf_token %}
-                            <button type=submit class="btn btn-danger button-delete-stock">Delete</button>
-                        </form>
-                    </span>
+                                <button type=submit class="button-delete-stock">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </span>
+                    </div>
                 </div>
             {% endfor %}
 

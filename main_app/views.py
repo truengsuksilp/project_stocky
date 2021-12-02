@@ -84,19 +84,20 @@ class StockCreate(CreateView):
     
     # FIXME: price
     def post(self, request, pk):
-        portfolio = Portfolio.objects.get(pk=pk),
-        ticker = request.POST.get("ticker"),
-        price = getStockPrice(request.POST.get("ticker")),
+        portfolio = Portfolio.objects.get(pk=pk)
+        ticker = request.POST.get("ticker")
+        price = getStockPrice(request.POST.get("ticker"))
+        print(price)
         date_of_valuation = getStockDate(request.POST.get("ticker"))
 
         Stock.objects.create(
-            # portfolio = portfolio,
+            portfolio = portfolio,
             ticker = ticker,
             price = price,
             date_of_valuation = date_of_valuation
         )
 
-        return redirect('/profile/1')
+        return redirect('/profiles/1')
     
     # STATIC VERSION
     # def get_success_url(self):
@@ -125,25 +126,30 @@ class PortfolioAnalyze(DetailView):
 ### Delete: filter then delete
 ### Redirect to previous page: request.META.get('HTTP_REFERER', '/')
 
-# To do later
-# class Home(TemplateView):
-#     template_name = 'home.html'
+class Home(TemplateView):
+    template_name = 'home.html'
 
-#     # TODO: Add conditionals - not logged in and valuation not added
-#     def post(self, request, pk):
+    def post(self, request, pk):
 
-#         user_id = request.user.id
-#         stocks = request.POST.get("tickers")
-#         valuation = request.POST.get("valuation")
+        user_id = request.user.id
+        tickers = request.POST.get("tickers")
+        valuation = request.POST.get("valuation")
 
-#         # Split comma separated input
-#         stock_array = stocks.replace(" ","").split(",")
+        # Split comma separated input
+        tickers_array = tickers.replace(" ","").split(",")
 
-#         # Update DB
-#         Portfolio.object.create(user_id=user_id, valuation=valuation)
+        # Update DB
+        Portfolio.object.create(
+            user_id = user_id, 
+            valuation = valuation
+        )
 
-#         for i in stock_array:
-#             Stock.object.create(stock_array[i])
+        for i in tickers_array:
+            Stock.object.create(
+                portfolio = Portfolio.objects.get(pk=pk),
+                ticker = tickers_array[i],
+                price = 100
+            )
 
 # Obsoleted
 # class PortfolioList(TemplateView):

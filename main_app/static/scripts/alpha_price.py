@@ -52,7 +52,7 @@ def getStockDate(ticker):
     field_name_1 = '07. latest trading day'
     field_name_2 = '05. price'
 
-    date_str = data[field_type][field_name_1]
+    date_str = data['Global Quote'][field_name_1]
     date = datetime.strptime(date_str, "%Y-%m-%d")
 
     return date

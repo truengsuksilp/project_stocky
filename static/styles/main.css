@@ -69,13 +69,13 @@ article {
   article div.portfolio-header {
     display: flex;
     justify-content: space-between; }
-    article div.portfolio-header h3 {
-      line-height: 1.8; }
   article div.stock {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem; }
+    article div.stock span {
+      text-align: left; }
   article h3 {
     line-height: 1;
     margin-bottom: 0px; }
@@ -95,14 +95,22 @@ article {
   article .stock-inputs input, article .stock-inputs button {
     margin: 0.5rem;
     width: 100%; }
+  article .portfolio-header {
+    margin-bottom: 1rem; }
+    article .portfolio-header h3 {
+      line-height: 1.0;
+      margin-bottom: 0.25rem; }
   article .portfolio-list {
     padding: 0.5rem 0.5rem 0.5rem 0rem;
     min-width: 250px; }
-    article .portfolio-list .button-delete-stock {
-      margin: 0rem;
-      padding: 0.1rem 0.1rem; }
   article .stock-add-button {
     padding: 0.1rem 0rem;
-    min-width: 250px; } }
+    min-width: 250px; }
+  article .button-delete-stock {
+    margin: 0rem;
+    padding: 0.25rem 0.25rem;
+    color: #030408;
+    border: none;
+    background-color: #030408; } }
 
 /*# sourceMappingURL=main.css.map */

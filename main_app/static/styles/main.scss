@@ -47,9 +47,6 @@ article {
     div.portfolio-header{
         display: flex;
         justify-content: space-between;
-        h3 {
-            line-height: 1.8;
-        }
     }
 
     div.stock {
@@ -58,6 +55,10 @@ article {
         align-items: center;
 
         margin-bottom: 0.5rem;
+
+        span {
+            text-align: left;
+        }
     }
 
     h3 {
@@ -98,18 +99,30 @@ article {
             }
         }
 
+        .portfolio-header {
+            margin-bottom: 1rem;
+            h3 {
+                line-height: 1.0;
+                margin-bottom: 0.25rem;
+            }
+        }
+
         .portfolio-list {
             padding: 0.5rem 0.5rem 0.5rem 0rem;
             min-width: 250px;
-            .button-delete-stock {
-                margin: 0rem;
-                padding: 0.1rem 0.1rem;
-            }
         }
         
         .stock-add-button{
             padding: 0.1rem 0rem;
             min-width: 250px;
+        }
+
+        .button-delete-stock {
+            margin: 0rem;
+            padding: 0.25rem 0.25rem;
+            color: $black;
+            border: none;
+            background-color: $black;
         }
     }
 }
