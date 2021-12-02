@@ -3,6 +3,8 @@
 
 {% block content %}
 
+
+
 <article class="profile">
     <section>     
         <form method="POST">
@@ -12,6 +14,12 @@
                 Create
             </button>
         </form>
+
+        <div>
+            <h6> Closing Price: $ {{price | floatformat:2 }} <h6> 
+            <h6> Date: {{date}} <h6> 
+        </div>
+
     </section>
 </article>    
 
