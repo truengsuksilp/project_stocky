@@ -21,6 +21,29 @@ from .static.scripts.alpha_price import *
 class Home(TemplateView):
     template_name = 'home.html'
 
+    def post(self, request):
+        user_id = request.user.id
+        tickers = request.POST.get("tickers")
+        valuation = request.POST.get("valuation")
+
+        # Split comma separated input
+        tickers_array = tickers.replace(" ","").split(",")
+
+        # Update DB
+        portfolio = Portfolio.objects.create(
+            user_id = user_id, 
+            valuation = valuation
+        )
+
+        for i in tickers_array:
+            Stock.objects.create(
+                portfolio = portfolio,
+                ticker = i,
+                price = 100
+            )
+        
+        return redirect("profile_detail", pk = user_id)
+
 class SignUp(View):
     def get(self, request):
         form = SignUpForm()
@@ -81,8 +104,7 @@ class StockCreate(CreateView):
         context["price"] = getStockPrice('IBM')
         context["date_of_price"] = getStockDate('IBM')
         return context
-    
-    # FIXME: price
+
     def post(self, request, pk):
         portfolio = Portfolio.objects.get(pk=pk)
         ticker = request.POST.get("ticker")
@@ -97,11 +119,7 @@ class StockCreate(CreateView):
             date_of_valuation = date_of_valuation
         )
 
-        return redirect('/profiles/1')
-    
-    # STATIC VERSION
-    # def get_success_url(self):
-    #     return reverse("portfolio_detail", kwargs={"pk": self.object.portfolio.id})
+        return redirect('profile_detail', pk=portfolio.user.id)
 
 class StockDelete(View):     
     def post(self, request, pk, stock_pk):
@@ -125,31 +143,6 @@ class PortfolioAnalyze(DetailView):
 
 ### Delete: filter then delete
 ### Redirect to previous page: request.META.get('HTTP_REFERER', '/')
-
-class Home(TemplateView):
-    template_name = 'home.html'
-
-    def post(self, request, pk):
-
-        user_id = request.user.id
-        tickers = request.POST.get("tickers")
-        valuation = request.POST.get("valuation")
-
-        # Split comma separated input
-        tickers_array = tickers.replace(" ","").split(",")
-
-        # Update DB
-        Portfolio.object.create(
-            user_id = user_id, 
-            valuation = valuation
-        )
-
-        for i in tickers_array:
-            Stock.object.create(
-                portfolio = Portfolio.objects.get(pk=pk),
-                ticker = tickers_array[i],
-                price = 100
-            )
 
 # Obsoleted
 # class PortfolioList(TemplateView):
