@@ -1,4 +1,3 @@
-from numpy.core.records import array
 import pandas as pd
 import numpy as np
 from alpha_vantage.timeseries import TimeSeries
@@ -43,7 +42,7 @@ def get_price_full(ticker):
 # GET JSON DATA INTO A DICTIONARY: {ticker: {}, ticker: {}}
 arr = portfolio["tickers"]
 
-def get_hist_prices(tickers: array):
+def get_hist_prices(tickers):
     stocks_hist_prices = {}
 
     # TEST ONLY
