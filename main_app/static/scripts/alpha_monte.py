@@ -1,3 +1,4 @@
+from numpy.core.records import array
 import pandas as pd
 import numpy as np
 from alpha_vantage.timeseries import TimeSeries
@@ -34,36 +35,56 @@ def last_price_data(ticker):
 # GET data #
 ############
 
-# # FUNCTION: Get data
-# def get_price_full(ticker):
-#     data, _ = ts.get_daily_adjusted(ticker, 'full')
-#     return data
+# FUNCTION: Get data
+def get_price_full(ticker):
+    data, _ = ts.get_daily_adjusted(ticker, 'full')
+    return data
 
-# # # GET JSON DATA INTO A DICTIONARY: {ticker: {}, ticker: {}}
-# stocks_hist_prices = {}
+# GET JSON DATA INTO A DICTIONARY: {ticker: {}, ticker: {}}
+arr = portfolio["tickers"]
 
-# for ticker in portfolio["tickers"]: 
-#     price_array = get_price_full(ticker)
-#     print(ticker)
+def get_hist_prices(tickers: array):
+    stocks_hist_prices = {}
 
-#     stocks_hist_prices[ticker] = price_array
+    # TEST ONLY
+    # tickers_array = []
 
-# # Dataframes: Create an array of data tables
-# data_frames = []
+    for ticker in tickers: 
+        price_array = get_price_full(ticker)
+        print(ticker)
+        
+        # TEST ONLY
+        # tickers_array.append(ticker)
 
-# for stock in stocks_hist_prices:
+        stocks_hist_prices[ticker] = price_array
+    
+    # TEST ONLY
+    # return tickers_array
+    return stocks_hist_prices
 
-#     df = pd.DataFrame.from_dict(stocks_hist_prices[stock], orient='index')
 
-#     # Post-Processing: Table: ticker | adj_close, Data Limit: 1 year
-#     df = df[:250]
-#     df['ticker'] = stock
-#     df = df[['ticker','5. adjusted close']]
+# Dataframes: Create an array of data tables
+def get_data_frames(stocks_hist_prices):
+    data_frames = []
 
-#     df.rename(columns={'5. adjusted close': 'adj_close'}, inplace=True, errors='raise')
-#     df['adj_close'] = df['adj_close'].astype('float64')
+    # TEST ONLY
+    tickers_array = []
 
-#     data_frames.append(df)
+    for stock in stocks_hist_prices:
+
+        df = pd.DataFrame.from_dict(stocks_hist_prices[stock], orient='index')
+
+        # Post-Processing: Table: ticker | adj_close, Data Limit: 1 year
+        df = df[:250]
+        df['ticker'] = stock
+        df = df[['ticker','5. adjusted close']]
+
+        df.rename(columns={'5. adjusted close': 'adj_close'}, inplace=True, errors='raise')
+        df['adj_close'] = df['adj_close'].astype('float64')
+
+        data_frames.append(df)
+
+    return tickers_array
 
 # # Dataframes: Create df_merge - a LONG table from merging individual stock tables
 # df_merged = pd.concat(data_frames)

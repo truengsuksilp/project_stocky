@@ -128,14 +128,14 @@ class StockDelete(View):
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 ### PORTFOLIO ANALYZE ###
-# TODO Change this to View with custom function
 class PortfolioAnalyze(DetailView):
     model = Portfolio
     template_name = "portfolio_analyze.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['message'] = last_price_data('MSFT')
+        # context['message'] = last_price_data('MSFT')
+        context['tickers'] = get_hist_prices(["MSFT", "AAPL", "GOOGL"])
         return context
 
 
