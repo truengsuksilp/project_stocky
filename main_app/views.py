@@ -18,7 +18,6 @@ from .static.scripts.alpha_monte import *
 
 # Create your views here.
 
-# TODO Adds def post to receive user inputs
 class Home(TemplateView):
     template_name = 'home.html'
 
@@ -36,6 +35,7 @@ class Home(TemplateView):
             valuation = valuation
         )
 
+        # Loop: Create stocks in the portfolio
         for i in tickers_array:
             Stock.objects.create(
                 portfolio = portfolio,
