@@ -14,6 +14,7 @@ from .forms import SignUpForm, LoginForm
 
 # Scripts
 from .static.scripts.alpha_price import *
+from .static.scripts.alpha_monte import *
 
 # Create your views here.
 
@@ -131,6 +132,12 @@ class StockDelete(View):
 class PortfolioAnalyze(DetailView):
     model = Portfolio
     template_name = "portfolio_analyze.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['message'] = last_price_data('MSFT')
+        return context
+
 
 
 

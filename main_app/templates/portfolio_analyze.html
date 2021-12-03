@@ -5,7 +5,9 @@
 <!-- Get all stocks in a portfolio -->
 <article class="profile">
     <section class="portfolio-list">   
-        <h3> {{portfolio.name}} </h3>  
+        <h3> {{portfolio.name}} </h3> 
+        <p> {{message}} </p>
+        
         {% for stock in portfolio.stocks.all %}        
             <div class="stock">
                 <span>
