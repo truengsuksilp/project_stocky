@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Portfolio (Model):
-    user = ForeignKey(User, on_delete=CASCADE, default='no_login', related_name="portfolios")
+    user = ForeignKey(User, on_delete=CASCADE, related_name="portfolios", null=True)
     name = CharField(max_length=100, default='no_name')
     valuation = IntegerField(default=10000)
     date_of_valuation = DateTimeField(auto_now_add=True)
