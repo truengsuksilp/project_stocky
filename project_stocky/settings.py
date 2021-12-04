@@ -149,5 +149,6 @@ LOGOUT_REDIRECT_URL = '/'
 ################################
 # Config Django App for Heroku #
 ################################
+# a little note that this app is awesome
 
 django_heroku.settings(locals())
