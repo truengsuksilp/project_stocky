@@ -1,25 +1,13 @@
-// TODO: Move * and body here
-
-body {
-    background-color: $black;
-    padding: 1rem;
-
-    display: grid;
-    grid-template-rows: 50px 1fr;
-    grid-template-areas:
-        "nav"
-        "articles"; 
-    justify-content: center;
+* {
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro';
+    // border: 1px solid goldenrod;
 }
 
-h1 {
-    font-size: 3.5rem;
+p {
+    line-height: 1.2;
 }
 
-h1, h2, h3, h4, h5, label, a, span, i {
+h1, h2, h3, h4, h5, h6, p, label, a, span, i {
     color: $white;
-}
-
-h6, p {
-    color: rgb(150, 150, 150);
 }

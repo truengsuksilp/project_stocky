@@ -5,6 +5,7 @@
   font-family: 'Source Sans Pro'; }
 
 p {
+  font-size: 1.1rem;
   line-height: 1.2; }
 
 h1, h2, h3, h4, h5, h6, p, label, a, span, i {
@@ -136,26 +137,20 @@ article.home-body-article {
   article.home-body-article h3 {
     padding-left: 0.5rem; }
 
-@media only screen and (min-width: 320px) {
-  h1 {
-    font-size: 1rem; } }
-
-@media only screen and (min-width: 600px) {
-  h1 {
-    font-size: 1.8rem; }
-  h4 {
-    font-size: 1.5rem; } }
-
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: 900px) {
   section.explainer {
     display: flex;
     padding: 3rem;
     align-items: center; }
   h1 {
-    font-size: 3.5rem; }
-  h4 {
-    font-size: 2rem; }
-  p {
-    font-size: 1.1rem; } }
+    font-size: 3.5rem; } }
+
+@media only screen and (min-width: 320px) {
+  h1 {
+    font-size: 2rem; } }
+
+@media only screen and (min-width: 320px) {
+  h1 {
+    font-size: 1rem; } }
 
 /*# sourceMappingURL=main.css.map */

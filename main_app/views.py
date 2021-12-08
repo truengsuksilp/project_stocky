@@ -16,6 +16,10 @@ from .forms import SignUpForm, LoginForm
 from .static.scripts.alpha_price import *
 from .static.scripts.alpha_monte import *
 
+# Random Plot
+import random
+from django.http import HttpResponse
+
 # Create your views here.
 
 class Home(TemplateView):
@@ -102,8 +106,8 @@ class StockCreate(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["price"] = getStockPrice('IBM')
-        context["date_of_price"] = getStockDate('IBM')
+        # context["price"] = getStockPrice('IBM')
+        # context["date_of_price"] = getStockDate('IBM')
         return context
 
     def post(self, request, pk):
@@ -135,10 +139,24 @@ class PortfolioAnalyze(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # context['message'] = last_price_data('MSFT')
-        context['tickers'] = get_hist_prices(["MSFT", "AAPL", "GOOGL"])
+        # context['tickers'] = get_simulation(["MSFT", "AAPL"])
+        # context['tickers'] = get_simulation_image(["MSFT", "AAPL", "QQQ"])
         return context
 
+class PlotView(TemplateView):
+    template_name = "plot.html"
 
+def PlotChart(request):
+    fig = plt.figure()
+    x = range(20)
+    y = [i for i in range(20)]
+    random.shuffle(y)
+    plt.plot(x,y)
+    g = mpld3.fig_to_html(fig)
+    return HttpResponse(g)
+
+def PlotMonte(request):
+    return get_simulation_image(["MSFT", "AAPL", "QQQ"])
 
 
 

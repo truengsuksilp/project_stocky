@@ -7,7 +7,13 @@
     <section class="portfolio-list">   
         <h3> {{portfolio.name}} </h3> 
         <p> {{message}} </p>
-        <p> {{tickers}} </p>
+        {% comment %} <p> {{tickers}} </p> {% endcomment %}
+
+        <!-- This shows HttpResponse text -->
+        <!-- <HttpResponse status_code=200, "text/html; charset=utf-8"> -->
+
+        {% comment %} {{ tickers }} {% endcomment %}
+        <embed src="{% url 'plot' %}" width="800" height="600">
         
         {% for stock in portfolio.stocks.all %}        
             <div class="stock">

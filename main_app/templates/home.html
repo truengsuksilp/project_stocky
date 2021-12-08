@@ -1,58 +1,58 @@
-<!-- NOTE: Mobile Goal: 
-    https://dribbble.com/shots/16070493-ProFinance-Finance-Management-App-Concept-Animation -->
-
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
-<article class="home">
-    <!-- Hero Section -->
-    <section class="home">
-        <h1>
-            Boost Your Investing Luck
-        </h1>
-        <h5>
-            An app to maximize your chance of earning well
-        </h5>
-    </section>
+<main>
+    <article class="home-top-article">
+        <img class="banner-background" src="{% static 'assets/background_stocky_crop.jpg' %}" alt="background_pic" />
+        <div class="banner-text">
+            <h1> Maximize Your Chances of Earning Well </h1>
+            <h5> Built by a fellow growth hacker </h5>
+        </div>
+    </article>
 
-    <!-- About Section -->
-    <section class="home">
-        <h3>What is Stocky?</h3>
-        <p>Stocky is your power tool to maximize the earning potential of your current stock portfolio</p>
+    <article class="home-body-article">
+        <section class="explainer">
+            <div class='text-explainer'>
+                <h1>What is Stocky?</h1>
+                <div class='text-explainer-body'>
+                    <p>
+                        Stocky is your power tool to maximize your existing stock portfolio to maximizes return over risk, i.e. portfolio optimization
+                    </p>
 
-        <h5>How it works?</h5>
-        <p>You provide the list of stocks you own.  Stocky can tell you which stocks to double down on and which stocks you should get out of.</p>
+                    <h4>How it works?</h4>
+                    <p>
+                        You provide the list of stocks you own.  Stocky can tell you which stocks to double down on and which stocks you should get out of
+                    </p>
 
-        <h5>Under the Hood</h5>
-        <p>A Nobel Prize winning approach!  Stocky uses a powerful analytical framework called the Modern Portfolio Theory to analyzes thousands of possible outcomes based on historical data.</p>
-
-        <img class="explainer" src="https://i.imgur.com/xQfCYgW.png" alt="portfolio">
-    </section>
-
-    <!-- Enter Stock Inputs -->
-    <section class="home">
-        <h3>
-            Enter Tickers and Portfolio Valuation
-        </h3>
-        
-        <form method="post">
-            {% csrf_token %}
-            {{form|crispy}}
-
-            <div class='stock stock-inputs'>
-                <input type="text" name="tickers" placeholder="AAPL, MSFT, GOOGL">
-                <input 
-                    type="number" 
-                    name="valuation" 
-                    placeholder="Total Valuation ($, Optional)"
-                >
-                <button type="submit" class="btn btn-success">Run</button>
+                    <h4>What's Under The Hood</h4>
+                    <p>
+                        A Nobel Prize winning approach!  Stocky uses a powerful analytical framework called the Modern Portfolio Theory to analyzes thousands of possible outcomes based on historical data.
+                    </p>
+                </div>
             </div>
+            <img class="img-explainer" src="{% static 'assets/img-explainer.png' %}" alt="portfolio">
+        </section>
 
-        </form>
-    </section>
+        <!-- Enter Stock Inputs -->
+        <section class="user-inputs">
+            <h3> Enter Tickers and Portfolio Valuation </h3>            
+            <form method="post">
+                {% csrf_token %}
+                {{form|crispy}}
 
-</article>
-
+                <div class='stock stock-inputs'>
+                    <input type="text" name="tickers" placeholder="AAPL, MSFT, GOOGL">
+                    <input 
+                        type="number" 
+                        name="valuation" 
+                        placeholder="Total Valuation ($, Optional)"
+                    >
+                    <button type="submit" class="btn btn-success">Run</button>
+                </div>
+            </form>
+        </section>    
+    </article>
+</main>
 {% endblock %}

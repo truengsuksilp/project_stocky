@@ -1,0 +1,54 @@
+<!-- NOTE: Mobile Goal: 
+    https://dribbble.com/shots/16070493-ProFinance-Finance-Management-App-Concept-Animation -->
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<article class="home">
+    <!-- Hero Section -->
+    <section class="home">
+        <h1> Maximize Your Portfolio's Chances of Earning Well </h1>
+        <h5> Built by a fellow growth hacker </h5>
+    </section>
+
+    <!-- About Section -->
+    <section class="home">
+        <h3>What is Stocky?</h3>
+        <p>Stocky is your power tool to maximize the earning potential of your current stock portfolio</p>
+
+        <h5>How it works?</h5>
+        <p>You provide the list of stocks you own.  Stocky can tell you which stocks to double down on and which stocks you should get out of.</p>
+
+        <h5>Under the Hood</h5>
+        <p>A Nobel Prize winning approach!  Stocky uses a powerful analytical framework called the Modern Portfolio Theory to analyzes thousands of possible outcomes based on historical data.</p>
+
+        <img class="explainer" src="https://i.imgur.com/xQfCYgW.png" alt="portfolio">
+    </section>
+
+    <!-- Enter Stock Inputs -->
+    <section class="home">
+        <h3>
+            Enter Tickers and Portfolio Valuation
+        </h3>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+
+            <div class='stock stock-inputs'>
+                <input type="text" name="tickers" placeholder="AAPL, MSFT, GOOGL">
+                <input 
+                    type="number" 
+                    name="valuation" 
+                    placeholder="Total Valuation ($, Optional)"
+                >
+                <button type="submit" class="btn btn-success">Run</button>
+            </div>
+
+        </form>
+    </section>
+
+</article>
+
+{% endblock %}

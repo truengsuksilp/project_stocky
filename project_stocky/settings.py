@@ -146,6 +146,10 @@ STATICFILES_FINDERS = [
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# Allow embed frames
+X_FRAME_OPTIONS = 'ALLOWALL'
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
+
 ################################
 # Config Django App for Heroku #
 ################################

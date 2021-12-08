@@ -33,17 +33,14 @@
     
 <!-- Nav Bar -->
     <nav>
-        <section>
+        <section class="home-icon">
             <a href="/">
                 <i class="fas fa-search-dollar"></i>
                 <h5>STOCKY</h5>
             </a>
         </section>
 
-        <section>
-            
-            <!-- TODO: <a> UPDATE link to profile -->
-            <!-- TODO: Bootstrap nav: So dropdown is easy -->
+        <section class="auth-icons">
             {% if user.is_authenticated %}
                 <a href="{% url 'profile_detail' user.pk %}" class='nav-auth'> 
                     Welcome: {{user.username | slice:":15"}}

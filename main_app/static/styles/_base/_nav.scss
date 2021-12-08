@@ -1,13 +1,21 @@
 nav {
     grid-area: nav;
-    
     display: flex;
     justify-content: space-between;
-    width: calc(100vw - 3rem);
+    width: 100vw;
+    margin: 1rem 0 1rem 0;
 
     section {
         display: flex;
         align-content: center;
+    }
+
+    section.home-icon {
+        padding-left: 1rem;
+    }
+
+    section.auth-icons {
+        padding-right: 1rem;
     }
 
     a {
@@ -19,19 +27,19 @@ nav {
     i {
         color: $white;
         font-size: 2.0rem;
-        padding: 16px 0px 16px 0px;
+        height: 2.0rem;
+        object-fit: fill;
+        overflow: hidden;
     }
 
     .nav-auth {
         color: $white;
         padding: 1rem;
         font-weight: 500;
-        border-radius: 10%;
     }
 
     #nav-signup {
         color: $black;
         background-color: $white;
     }
-    
 }

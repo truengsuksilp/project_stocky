@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import Home, SignUp, ProfileDetail, PortfolioCreate, PortfolioDetail, PortfolioUpdate, PortfolioDelete, StockCreate, StockDelete, PortfolioAnalyze
+from .views import Home, SignUp, ProfileDetail, PortfolioCreate, PortfolioDetail, PortfolioUpdate, PortfolioDelete, StockCreate, StockDelete, PortfolioAnalyze, PlotView, PlotMonte
+from .views import PlotChart
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
@@ -12,6 +13,11 @@ urlpatterns = [
     path('portfolios/<int:pk>/update/', PortfolioUpdate.as_view(), name='portfolio_update'),
     path('portfolios/<int:pk>/delete/', PortfolioDelete.as_view(), name='portfolio_delete'),
     path('portfolios/<int:pk>/analyze/', PortfolioAnalyze.as_view(), name='portfolio_analyze'),
+
+    # Plot Chart
+    path('plot/', PlotMonte, name='plot'),
+    # path('portfolios/<int:pk>/analyze/', PlotView.as_view(), name='portfolio_analyze'),
+    
 
     # STOCKS
     path('portfolios/<int:pk>/new', StockCreate.as_view(), name='stock_create'),
